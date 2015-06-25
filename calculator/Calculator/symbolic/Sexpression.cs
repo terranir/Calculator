@@ -7,35 +7,70 @@ namespace Sexpression
 
     public abstract class Sexpr
     {
+        /// The class Sexpr is an abstract class. The purposose of this abstract class is to provide a definition that all derived classes share. 
 
+        /// <summary>
+        /// This is the default constructor of the class.
+        /// </summary>
         public Sexpr()
         {
         }
 
+
+        /// <summary>
+        /// This method is an abstract methord. The fact that it is abstract forces all derived non abstract classes to implement the method. The method is not implemented in this class.
+        /// </summary>
+        /// <param name="h"></param>
+        /// <returns></returns>
         public abstract Sexpr eval(Hashtable h);
 
+
+        /// <summary>
+        /// This methord returns the priority. It is set to 100 for the class Sexpr
+        /// </summary>
+        /// <returns>100</returns>
         public int priority()
         {
             return 100;
         }
 
+        /// <summary>
+        /// This method is an abstract method. All derived non abstract classes are thereby forced to implement the method. The method is not implemented in this class.
+        /// </summary>
+        /// <returns></returns>
         public abstract String getName();
 
+        /// <summary>
+        /// This method is a virtual method. This means that derived classes can  override this method with its own implementation. The method returns a true or false value depending on the class. If the class is a constant then the return value is true. Otherwise it is false. 
+        /// </summary>
+        /// <returns>false</returns>
         public virtual bool isConstant()
         {
             return false;
         }
-
+        /// <summary>
+        /// This method is a virtual method. This means that derivide classes can override this method with its own implementation. The method returns a true or false value depending on the class. If the value is zero then the value is true, otherwise it is false. For the class sexpr it is obviously false
+        /// </summary>
+        /// <returns>false</returns>
         public virtual bool isZero()
         {
             return false;
         }
-
+        /// <summary>
+        /// This method is a virtual method. The difference between a virtual method and an abstract method is that the virtual methods are implemented in the base class and can be overriden by derived classes. An abstract class is not implemented
+        /// in its base class and must be implemented in non abstract inherited classes. 
+        /// </summary>
+        /// <returns></returns>
         public virtual bool isOne()
         {
             return false;
         }
 
+
+        /// <summary>
+        /// This method is a virtual method. The method is implemented in Sexpr and can be overriden by the inherited classes to Sexpr. 
+        /// </summary>
+        /// <returns></returns>
         public virtual double getValue()
         {
             	throw new SystemException("Endast konstanter!");
@@ -45,9 +80,17 @@ namespace Sexpression
 
     }
 
+
+
     public abstract class Atom:Sexpr
     {
+
+        // The class Atom is inherited from Sexpr. It is in it self an abstract class. 
    
+/// <summary>
+///This method not mandatory to implemnt since Atom is an abstract class. Otherwise it would have been.
+/// </summary>
+/// <returns></returns>
         public override String getName()
         {
         return ToString();
@@ -55,15 +98,30 @@ namespace Sexpression
     }
 
     public abstract class binOp:Sexpr
-    {
+    {   //The class binop stants for binary operator and is inherits Sexpr. it is an abstract class and therefore does not have to implement sexprs abstract methods
+
+
+        /// <summary>
+        /// Class fields
+        /// </summary>
         protected Sexpr left, right;
 
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="r"></param>
         public binOp(Sexpr l, Sexpr r)
         {
             left=l;
             right=r;
         }
 
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <returns></returns>
         public override abstract String getName();
 
         public string tostring()
